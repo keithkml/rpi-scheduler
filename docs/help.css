@@ -1,0 +1,150 @@
+html {
+  background-color: #eee;
+}
+
+body {
+  position: relative;
+  background-color: white;
+  border: 1px solid #898989;
+  border-top: none;
+  width: 600px;
+  margin: auto;
+  margin-top: 0;
+  margin-bottom: 5ex;
+  padding: 20px;
+  padding-left: 90px;
+}
+
+h1, h2, h3,
+div, li, p {
+  font-family: Bitstream Vera Sans, Lucida Grande, Verdana, sans-serif;
+}
+
+a {
+  color: #363636;
+}
+
+a:hover {
+  background-color: #eee;
+}
+
+img.logo {
+  position: relative;
+  left: -70px;
+}
+
+div.linkbar {
+  font-size: x-small;
+  font-weight: bold;
+  color: #363636;
+  padding-top: 1ex;
+  padding-bottom: 2ex;
+  border-bottom: 1px solid #898989;
+}
+
+div.sidebar {
+  position: absolute;
+  right: 20px;
+  width: 148px;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+div.snippet {
+  margin-bottom: 3ex;
+}
+
+div.snippet img {
+  display: block;
+  border: 1px solid #363636;
+}
+
+div.snippet h1 {font-size: x-small}
+div.snippet p {font-size: x-small; margin-top: 0}
+
+div.content {
+  margin: 0;
+  padding: 0;
+  padding-top: 1ex;
+  padding-bottom: 3ex;
+  padding-right: 50px;
+}
+
+div.with-sidebar {
+  margin-right: 167px;
+  border-right: 1px solid #898989;
+  padding-right: 20px;
+}
+
+div.content div.item {
+  position: relative;
+  padding-top: 1ex;
+  padding-bottom: 1ex;
+  border-top: 1px dotted #898989;
+}
+
+div.content div.item-top {
+  border: none;
+  padding: 0;
+  padding-bottom: 1ex;
+  margin: 0;
+}
+
+div.item img.install {
+  border: none;
+  display: inline;
+  margin-bottom: 2ex;
+  margin-left: 2em;
+  float: right;
+}
+
+div.content p, div.content li {
+  font-size: small;
+  line-height: 1.5;
+}
+
+div.content h1 {color: #ed1b23}
+div.content h2, h3 {color: #363636 }
+div.content h1 {font-size: large}
+div.content h2 {font-size: medium}
+div.content h3 {font-size: small}
+
+div.content ul li {
+  margin-bottom: 1.5ex;
+  margin-left: -25px;
+}
+
+div.content ol ul li { margin: 0px; }
+
+div.item h2 a.quick-link {
+  float: right;
+  margin-top: 0.5ex;
+  font-weight: normal;
+  font-size: x-small;
+}
+
+.highlight {
+  color: #ed1b23;
+}
+
+div.footer {
+  border-top: 1px solid #898989;
+  padding-top: 2ex;
+  font-size: x-small;
+  color: #898989;
+}
+
+div.footer div.pretense {
+  display: inline;
+  float: right;
+}
+
+img.thumbnail {
+  border: none;
+  display: block;
+  margin-bottom: 2ex;
+}
+
+div.header img { border: 0px; }
+
+div.header a { background-color: inherit; }

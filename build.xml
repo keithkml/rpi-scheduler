@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="us-ascii"?>
+ 
+<project name="Scheduler" default="compile">
+  <description> Temporary Scheduler build file </description>
+
+  <target name="dist-init">
+    <mkdir dir="dist" />
+  </target>
+  <target name="commonjar" depends="dist-init">
+    <delete file="dist/common.jar" />
+    <jar destfile="dist/common.jar" basedir="common/bin" update="true" />
+  </target>
+  <target name="dbjar" depends="dist-init">
+    <delete file="dist/db.jar" />
+    <jar destfile="dist/db.jar" basedir="schedb/bin" update="true" />
+  </target>
+  <target name="enginejar" depends="dist-init">
+    <delete file="dist/engine.jar" />
+    <jar destfile="dist/engine.jar" basedir="engine/bin" update="true" />
+  </target>
+  <target name="uijar" depends="dist-init">
+    <delete file="dist/ui.jar" />
+    <jar destfile="dist/ui.jar" basedir="ui/bin" update="true" />
+  </target>
+
+  <target name="olddbjar" depends="dist-init">
+    <delete file="dist/olddb.jar" />
+    <jar destfile="dist/olddb.jar" basedir="olddbplug/bin" update="true" />
+  </target>
+  <target name="rpidbjar" depends="dist-init">
+    <delete file="dist/rpidbplug.jar" />
+    <jar destfile="dist/rpidbplug.jar" basedir="rpidbplug/bin" update="true" />
+  </target>
+
+  <target name="jnlp-jars" depends="commonjar, dbjar, enginejar, uijar">
+    <copy todir="lib">
+      <fileset dir="common/lib" includes="*.jar" />
+      <fileset dir="schedb/lib" includes="*.jar" />
+      <fileset dir="engine/lib" includes="*.jar" />
+      <fileset dir="ui/lib" includes="*.jar" />
+    </copy>
+    <taskdef name="pack200"
+      classname="com.sun.tools.apache.ant.pack200.Pack200Task"
+      classpath="build-lib/Pack200Task.jar" />
+    <mkdir dir="dist/packed" />
+
+    <!-- prepack jars -->
+    <delete dir="dist/packed" includes="*.jar *.jar.pack.gz"  />
+    <pack200 src="dist/common.jar" repack="true" modificationtime="latest"
+      effort="9" destfile="dist/packed/common.jar" />
+    <pack200 src="dist/db.jar" repack="true" modificationtime="latest"
+      effort="9" destfile="dist/packed/db.jar" />
+    <pack200 src="dist/engine.jar" repack="true" modificationtime="latest"
+      effort="9" destfile="dist/packed/engine.jar" />
+    <pack200 src="dist/ui.jar" repack="true" modificationtime="latest"
+      effort="9" destfile="dist/packed/ui.jar" />
+    <pack200 src="lib/forms_rt.jar" repack="true" modificationtime="latest"
+      effort="9" destfile="dist/packed/forms_rt.jar" />
+    <pack200 src="lib/jdom.jar" repack="true" modificationtime="latest"
+      effort="9" destfile="dist/packed/jdom.jar" />
+    <pack200 src="lib/jdom.jar" repack="true" modificationtime="latest"
+      effort="9" destfile="dist/packed/winlaf-native.jar" />
+    <pack200 src="lib/jdom.jar" repack="true" modificationtime="latest"
+      effort="9" destfile="dist/packed/winlaf.jar" />
+
+    <!-- sign prepacked jars -->
+    <signjar keystore="etc/rpisched-keystore" storepass="records"
+      alias="signer" keypass="records">
+      <fileset dir="dist/packed" includes="*.jar" />
+    </signjar>
+
+    <!-- pack jars -->
+    <pack200 src="dist/packed/common.jar" gzipoutput="true" effort="9"
+      modificationtime="latest" destfile="dist/packed/common.jar.pack.gz"/>
+    <pack200 src="dist/packed/db.jar" gzipoutput="true" effort="9"
+      modificationtime="latest" destfile="dist/packed/db.jar.pack.gz"/>
+    <pack200 src="dist/packed/engine.jar" gzipoutput="true" effort="9"
+      modificationtime="latest" destfile="dist/packed/engine.jar.pack.gz"/>
+    <pack200 src="dist/packed/ui.jar" gzipoutput="true" effort="9"
+      modificationtime="latest" destfile="dist/packed/ui.jar.pack.gz"/>
+    <pack200 src="dist/packed/forms_rt.jar" gzipoutput="true" effort="9"
+      modificationtime="latest" destfile="dist/packed/forms_rt.jar.pack.gz"/>
+    <pack200 src="dist/packed/jdom.jar" gzipoutput="true"  effort="9"
+      modificationtime="latest" destfile="dist/packed/jdom.jar.pack.gz"/>
+    <pack200 src="dist/packed/winlaf-native.jar" gzipoutput="true"  effort="9"
+      modificationtime="latest" destfile="dist/packed/winlaf-native.jar.pack.gz"/>
+    <pack200 src="dist/packed/winlaf.jar" gzipoutput="true"  effort="9"
+      modificationtime="latest" destfile="dist/packed/winlaf.jar.pack.gz"/>
+
+  </target>
+  
+  <target name="compile"/>
+</project>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This is a sample SCHEDB XML course database file. This sample file should help
+  you  to understand the Scheduler database format, and help you to make your
+  own SCHEDB database file generator.
+-->
+<schedb generated="Thu Nov 04 00:24:48 EST 2004">
+  <dept abbrev="ADMN" name="Administration">
+    <!-- The following types of grade-type are recognized:
+           normal pass-fail
+
+         For most courses, the min-credits and max-credits will be the same,
+         because most courses are only worth a single number of credits.
+         However, at many schools, independent study courses are worth some
+         number in a given range (like 2-12), so this option is provided. -->
+    <course number="1010" name="ORAL COMM FOR TA'S II"
+      min-credits="4" max-credits="4" grade-type="pass-fail">
+
+      <!-- A section may have a CRN (Course Reference Number), and a section
+           number. Each section in the entire course database must have a unique
+           CRN which is shared by no other section of any course. A section's
+           section number, however, must only be unique within that course. So,
+           for example, there cannot be two sections of "ORAL COMM FOR TA'S II"
+           with the section number "2".
+
+           The "seats" value corresponds to how many students can take this
+           section of this course. -->
+      <section crn="30392" number="1" seats="15">
+
+        <!--
+          The following period types are recognized:
+            ind-study lab lecture recitation seminar studio
+
+          The following abbreviations must be used for the "days" value:
+            mon tue wed thu fri sat sun
+        -->
+        <period type="lecture" professor="Barthel" days="mon"
+          starts="4:00PM" ends="4:50PM" />
+        <period type="recitation" professor="Barthel" days="tue,thu"
+          starts="4:00PM" ends="4:50PM" />
+      </section>
+
+      <section crn="30393" number="2" seats="30">
+        <period type="lecture" professor="Barthel" days="mon"
+          starts="6:00PM" ends="7:50PM" />
+        <period type="recitation" professor="Barthel" days="tue,thu"
+          starts="10:00AM" ends="12:50PM" />
+      </section>
+    </course>
+
+    <course number="4050" name="PROFESSIONAL LEADERSHIP P"
+      min-credits="0" max-credits="0" grade-type="pass-fail">
+      <section crn="33659" number="1" seats="45">
+        <period type="lecture" professor="Persoon" days="tue"
+          starts="7:00PM" ends="8:50PM" />
+      </section>
+    </course>
+  </dept>
+
+  <dept abbrev="ARCH" name="Architecture">
+    <!-- Don't forget, this is XML, so special characters like the & sign must
+         be specially formatted. You should use an XML code library to generate
+         this file; such a library will automate things like this. -->
+    <course number="2120" name="BLDG &amp; THINKING ARCH 2"
+      min-credits="2" max-credits="2" grade-type="normal">
+      <section crn="30133" number="1" seats="90">
+        <period type="lecture" professor="Bell" days="mon,thu"
+          starts="10:00AM" ends="11:50AM" />
+      </section>
+    </course>
+  </dept>
+</schedb>

@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!--
+  This is the page that Internet Explorer users will see if they choose to
+  install the Scheduler and they don't have Java 5.0 installed.
+
+  This page uses an ActiveX control that Sun provides which automatically
+  installs Java 5.0, then runs a specified application. In our case, that
+  application is the Scheduler; after Java 5.0 is installed, the Scheduler will
+  be installed and run.
+
+  YOU MUST CHANGE THE URL IN THE OBJECT PARAM TO POINT TO YOUR JNLP FILE. This
+  is a detail which is easy to miss, but is essential for users to be able to
+  run your Scheduler.
+
+  You should change all references to "My School Scheduler" to the name of your
+  school's scheduler.
+
+  You should feel free to customize this page in any way you want to make it fit
+  into your site like any other page would.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+          "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>My School Scheduler 2005 - Installing...</title>
+
+    <script type="text/javascript">
+      function hideInfoBarInfo() {
+        var el = document.getElementById("infobar-info");
+        if (el && navigator.userAgent.indexOf("SV1") == -1) {
+          el.style.display = "none";
+        }
+      }
+    </script>
+
+    <style type="text/css">
+      ol { margin-top: 0.1em }
+
+      .infobar-name {
+        font-family: ms shell dlg 2, ms shell dlg;
+        font-size: 10pt;
+        font-weight: bold;
+      }
+
+      img.infobar-icon {
+        vertical-align: middle;
+        margin-right: 3px;
+      }
+    </style>
+  </head>
+  <body onload="hideInfoBarInfo()">
+    <div id="firstpart">
+      <h1>Downloading and Installing Java and My School Scheduler...</h1>
+      <p>Java and My School Scheduler installation will complete shortly.</p>
+    </div>
+
+    <object codebase="http://java.sun.com/update/1.5.0/jinstall-1_5_0-windows-i586.cab"
+        classid="clsid:5852F5ED-8BF4-11D4-A245-0080C6F74284"
+        height="0" width="0">
+
+      <!-- CHANGE THIS URL TO POINT TO YOUR JNLP FILE. -->
+      <param name="app" value="http://myschool.edu/scheduler/run/scheduler.jnlp" />
+
+      <param name="back" value="false" />
+
+      <div style="margin: 2em; border: 2px solid #ed1b23; padding: 0px 2em ;">
+        <h2>Error during Installation</h2>
+        <p id="infobar-info">
+          If you see an
+          <span class="infobar-name"><img src="infobar.png"
+              class="infobar-icon" />
+          Information Bar</span> at the top of this browser window, you should
+          <strong>click on the bar to install Java and My School Scheduler</strong>.
+        </p>
+
+        <p>
+          My School Scheduler might not be able to be auto-installed on your
+          computer.
+          <br />
+          To install My School Scheduler manually:
+        </p>
+
+        <ol>
+          <li> <a href="http://java.com">Download
+          Java 5.0</A>, and run it to install Java 5.0</li>
+          <li> <a href="run/scheduler.jnlp">Install My School Scheduler</a> </li>
+        </ol>
+      </div>
+    </object>
+
+
+    <p>
+      My School Scheduler may ask you several questions with scary Warning icons. You
+      should read each one and click "Yes" to install My School Scheduler properly.
+    </p>
+
+    <p>
+      If installation does not begin, click to
+      <a href="http://java.com">Download Java 5.0</A> manually. When
+      installation completes, click <a href="run/scheduler.jnlp">Install
+      My School Scheduler</a> to download and install My School Scheduler.
+    </p>
+  </body>
+</html>

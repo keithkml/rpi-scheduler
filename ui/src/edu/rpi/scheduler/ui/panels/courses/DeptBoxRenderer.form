@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="edu.rpi.scheduler.ui.panels.courses.DeptBoxRenderer">
+  <grid id="80014" binding="panel" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="2" left="2" bottom="2" right="2"/>
+    <constraints>
+      <xy x="81" y="51" width="227" height="44"/>
+      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+    </constraints>
+    <properties>
+      <opaque value="true"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="a5726" class="javax.swing.JLabel" binding="nameLabel">
+        <constraints>
+          <xy x="2" y="15" width="28" height="14"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="8" fill="0"/>
+        </constraints>
+        <properties>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="8235d" class="javax.swing.JLabel" binding="abbrevLabel">
+        <constraints>
+          <xy x="197" y="15" width="28" height="14"/>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0"/>
+        </constraints>
+        <properties>
+          <text value="Label"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
