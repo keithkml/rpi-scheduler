@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<!--
+  This file is the first step in the process of installing and running the
+  Scheduler. From here, users may visit install-java.html,
+  install-scheduler.html, or run/scheduler.jnlp, depending on their computer's
+  configuration.
+
+  You should change all references to "My School Scheduler" to the name of your
+  school's scheduler.
+
+  You should feel free to customize this page in any way you want to make it fit
+  into your site like any other page would.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+          "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>My School Scheduler 2005</title>
+
+    <style type="text/css">
+      #info-mac, #info-java5installed, #info-jws-noie, #info-nojava-noie,
+        #info-nojava-ie {
+        display: none;
+      }
+    </style>
+
+    <script type="text/javascript" src="scripts/check-java.js"></script>
+
+    <script type="text/vbscript" src="scripts/check-java-ie.vbs"></script>
+
+    <script type="text/javascript"><!--
+      function go() {
+        // hide the "You don't have Javascript installed" message
+        var nojsel = document.getElementById("info-nojs");
+        nojsel.style.display = "none";
+
+        // figure out which text to show
+        var el;
+        if (navigator.userAgent.indexOf("Mac") != -1) el = "info-mac";
+        else if (javaws150Installed) el = "info-java5installed";
+        else if (javawsInstalled && isIE == "false") el = "info-jws-noie";
+        else if (isIE == "false") el = "info-nojava-noie";
+        else el = "info-nojava-ie";
+
+        // and show it
+        document.getElementById(el).style.display = "block";
+      }
+    //-->
+    </script>
+
+  </head>
+  <body onload="go()">
+    <h1>Install Scheduler</h1>
+
+    <!--
+      Only one of the DIVs below will be shown to the user. The rest will be
+      hidden by JavaScript code.
+    -->
+
+    <!-- This DIV will be shown if the user's browser does not have JavaScript
+         enabled. -->
+    <div id="info-nojs">
+      <p>
+        <strong>We can't tell if your computer can run My School Scheduler
+        or not.</strong> This is probably because your browser has
+        JavaScript disabled.
+      </p>
+
+      <p>
+        You can try to install My School Scheduler manually:
+      </p>
+      <ol>
+        <li>
+          <a href="http://java.com">Download Java 5.0</a> and install it
+        </li>
+        <li><a href="install-scheduler.html">Install My School Scheduler</a></li>
+      </ol>
+
+      <p>
+        You should ignore the text below; it only applies to people with
+        JavaScript-enabled browsers.
+      </p>
+    </div>
+
+    <!-- This DIV will be shown if the user is using a Mac. As of this writing,
+         Apple has not yet released Java 5.0 for Mac. -->
+    <div id="info-mac">
+      <p>
+        We're sorry, but currently there is no Mac version of My School Scheduler 2005.
+      </p>
+    </div>
+
+    <!-- This DIV will be shown if the user already has Java 5.0 installed. -->
+    <div id="info-java5installed">
+      <p>
+        Click to <a href="install-scheduler.html">Install My School Scheduler 2005</a>!
+        <br />
+        (If you already have Scheduler installed on your computer, this will
+        upgrade Scheduler to the latest version.)
+      </p>
+    </div>
+
+    <!-- This DIV will be shown if the user has Java Web Start installed, but
+         it cannot be determined which version is installed. -->
+    <div id="info-jws-noie">
+      <p>
+        <strong style="font-size: large">Your computer might not have
+        Java 5.0 installed!</strong>
+        <br />
+        My School Scheduler requires Java 5.0.
+      </p>
+
+      <p>
+        If you think your computer <span style="font-weight: bold">has
+        Java 5.0</span>:
+      </p>
+
+      <ol>
+        <li><a href="install-scheduler.html">Install My School Scheduler</a>
+          <br />
+          (If you already have Scheduler installed on your computer, this
+          will upgrade Scheduler to the latest version.)
+        </li>
+      </ol>
+
+      <p>
+        If you <span style="font-weight: bold">don't know</span> if your
+        computer has Java 5.0:
+      </p>
+
+      <ol>
+        <li><a href="http://java.com">Download Java 5.0</a> and install
+            it</li>
+        <li><a href="install-scheduler.html">Install My School Scheduler</a></li>
+      </ol>
+    </div>
+
+    <!-- This DIV will be shown if the user does not have Java 5.0 installed,
+         and the user is not using Internet Explorer. In this case, the user
+         must install Java 5.0 manually, without the automatic installer in
+         install-java.html. -->
+    <div id="info-nojava-noie">
+      <p>
+        My School Scheduler requires that your computer has Java 5.0 installed.
+        <br />
+        To install My School Scheduler:
+      </p>
+      <ol>
+        <li>
+          <a href="http://java.com">Download Java 5.0</a> and install it</li>
+          <li><a href="install-scheduler.html">Install My School Scheduler</a>
+        </li>
+      </ol>
+    </div>
+
+    <!-- This DIV will be shown if the user does not have Java 5.0 installed,
+         and is using Internet Explorer. In this case, the user is redirected
+         to the automatic ActiveX installer on install-java.html. -->
+    <div id="info-nojava-ie">
+      <p>
+        Click <a href="install-java.html">Install My School Scheduler</a> to install
+        Java 5.0 and My School Scheduler.
+      </p>
+      <p>
+        If this doesn't work, you can install Java and My School Scheduler manually:
+      </p>
+      <ol>
+        <li><a href="http://java.com">Download Java 5.0</a> and install it</li>
+        <li><a href="install-scheduler.html">Install My School Scheduler</a></li>
+      </ol>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+  This is the page that users will see if they choose to install the Scheduler
+  and they have Java 5.0 installed.
+
+  This page opens Java Web Start with the Scheduler JNLP file, which causes the
+  Scheduler to be installed and run.
+
+  You should change all references to "My School Scheduler" to the name of your
+  school's scheduler.
+
+  You should feel free to customize this page in any way you want to make it fit
+  into your site like any other page would.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+          "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>My School Scheduler 2005 - Installing...</title>
+
+    <script type="text/javascript">
+      function download() {
+        location = "run/scheduler.jnlp";
+      }
+    </script>
+  </head>
+  <body onload="download()">
+    <h1> Installing My School Scheduler... </h1>
+
+    <p>
+      Installation will begin shortly. If it does not, you can
+      <a href="run/scheduler.jnlp">install My School Scheduler manually</a>.
+    </p>
+
+    <p>
+      My School Scheduler may ask you several questions with scary Warning
+      icons. You should read each one and click "Yes" to install My School
+      Scheduler properly.
+    </p>
+  </body>
+</html>

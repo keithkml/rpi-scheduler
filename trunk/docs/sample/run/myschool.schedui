@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  This is the Scheduler UI configuration file. You should read the instructions
+  inside the <!- -> marks, like the ones that enclose this paragraph.
+
+  You should modify the parts of this file which have associated
+  instructions in <!- -> marks.
+-->
+<!DOCTYPE schedui PUBLIC "-//Keith Lea//DTD Scheduler 2005//EN"
+ "http://kano.net/dtd/schedui-2005.dtd">
+<schedui>
+  <program-info>
+    <!-- Change these 3 values to the name of your school's scheduler, and your
+         name and e-mail address, for when users have trouble. -->
+    <program-name>My School's Scheduler</program-name>
+    <admin name="Jim Admin" email="your@email.address" />
+
+    <!-- Each <help-link> shows up as an item in the Help menu which brings
+         the user to a web page. You can add or remove as many as you want, and
+         change the ones that are already here. -->
+    <help-links>
+      <help-link href="http://myschool.edu/scheduler/help">
+        Scheduler Help
+      </help-link>
+
+      <help-link href="http://myschool.edu/scheduler/bugreport">
+        Report a Bug
+      </help-link>
+    </help-links>
+
+    <!-- The information here shows up in the Help->About dialog box. It can
+         contain basic HTML formatting. -->
+    <about-box-text><![CDATA[
+
+      The My School Scheduler is maintained by Jim Admin.
+      <br><br>
+      The Scheduler was originally developed by Keith Lea.
+
+      ]]>
+    </about-box-text>
+  </program-info>
+
+  <ui-info>
+    <!--
+      These <icon> entries specify what window icon should be used for the
+      four main windows of the application.
+
+      These can be PNG, BMP, JPG, or GIF files. We recommend that you use 16x16
+      images for these icons. The URL's are relative to the "codebase" defined
+      in the scheduler.jnlp file. You may also use "absolute" URL's like
+      "http://myschool.edu/scheduler/image.gif".
+
+      If you don't change these, the default Scheduler icon will be used.
+    -->
+    <icons>
+      <icon type="loading-progress" href="window-icon.png" />
+      <icon type="main" href="window-icon.png" />
+      <icon type="course-preview" href="window-icon.png" />
+      <icon type="view-schedule" href="window-icon.png" />
+    </icons>
+
+    <!--
+      This determines the range of the time grid shown on the second and
+      third screens, and in the course preview window.
+
+      EXAMPLE USE:
+      If your school doesn’t have class on Saturday and Sunday, you could use
+      "mon,tue,wed,thu,fri" for the "days" value. If your school doesn’t have
+      classes before 8:00 AM, you could write "8:00 AM" as the "start-time"
+      value.
+     -->
+    <default-grid-range days="mon,tue,wed,thu,fri,sat"
+      start-time="6:00 AM" end-time="11:00 PM" />
+
+    <!--
+      These window-size entries determine the initial size of the three main
+      windows of the application. These values are only used when a user
+      first installs and runs the Scheduler. After that, the windows will be
+      sized the way they were when the user last closed the Scheduler.
+
+      The window sizes provided here should be good enough, but if your users
+      have larger or smaller screens than normal, you may wish to change
+      these.
+    -->
+    <window-sizes>
+      <window-size type="main" width="780" height="590"/>
+      <window-size type="course-preview" width="713" height="363" />
+      <window-size type="view-schedule" width="678" height="439" />
+    </window-sizes>
+
+    <!--
+      The display-format entries specify how the application should identify
+      a course to the user, in different contexts. Course names formatted in
+      this way are seen throughout the application.
+
+      The formats provided here should be good enough, but if your school has a
+      particular way of referring to courses, like
+      "CSCI/1200/Programming Languages", you should change these formats.
+
+      The display-format fields {0} through {7} will be replaced according to
+      these rules:
+        {0} = Department abbreviation, like CSCI
+        {1} = Department name, like Computer Science
+        {2} = Course number, like "1200"
+        {3} = Course name, like "Programming Languages"
+        {4} = Course minimum credits, like "2" (if course may be worth 2 to 12
+              credits), or "4" (if course is worth 4 credits)
+        {5} = Course maximum credits, like "12" (if course may be worth 2 to 12
+              credits), or "4" (if course is worth 4 credits)
+        {6} = Course credits, like "2-12" (if course may be worth 2 to 12
+              credits), or "4" (if course is worth 4 credits)
+        {7} = Number of sections in course, like "6"
+    -->
+    <display-formats>
+      <!-- The "very-short-course" format is for when there is not enough room
+           for the course name to be shown.
+
+           The standard very-short-course format, "{0} {2}", shows courses like
+           "CSCI 1200". -->
+      <display-format type="very-short-course">{0} {2}</display-format>
+
+      <!-- The "very-short-course" format is for when there is more room, and
+           more information about the course can be shown (like its full
+           name).
+
+           The standard short-course format, "{0} {2} - {3}", shows courses like
+           "CSCI 1200 - Programming Languages".-->
+      <display-format type="short-course">{0} {2} - {3}</display-format>
+
+    </display-formats>
+  </ui-info>
+
+  <!--
+    Here you can define the types of course searches that the user can perform
+    using the search box in the upper-right corner of the initial course
+    selection screen.
+
+    Each search-type definition contains a list of search-keys. A search key
+    specifies which part of a course's information should be searched. There are
+    several pre-defined search keys:
+
+      dept-name - searches department names, like "Computer Science"
+      dept-abbrev - searches department abbreviations, like "CSCI"
+      course-name - searches course names, like "Programming Languages"
+      course-number - searches course numbers, like "1200"
+      section-id - searches section ID's, like "64423"
+      notes - searches note entries for a course, like "This course meets with
+              STSS 4963"
+      location - searches class period location, like "Barton 103"
+      professor - searches class period professor names, like "Showalter"
+
+    As an example, if your school lists the locations of class periods, you
+    could add a location search type like this:
+
+      <search-type name="Class location">
+        <search-key name="location" />
+      </search-type>
+
+    Then, students using your Scheduler could select the Location search type,
+    and type the name of a building, to find all courses which meet in that
+    building.
+  -->
+  <search-types>
+    <search-type name="All">
+      <search-key name="course-name" />
+      <search-key name="course-number" />
+      <search-key name="professor" />
+      <search-key name="location" />
+      <search-key name="section-id" />
+    </search-type>
+
+    <search-type name="Course name">
+      <search-key name="course-name" />
+      <search-key name="course-number" />
+    </search-type>
+
+    <search-type name="Professor">
+      <search-key name="professor" />
+    </search-type>
+
+    <!--
+      <search-type name="Class location">
+        <search-key name="location" />
+      </search-type>
+    -->
+
+    <search-type name="Section ID">
+      <search-key name="section-id" />
+    </search-type>
+  </search-types>
+</schedui>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  This is the Java Web Start launch file. You should read the instructions
+  inside the <!- -> marks, like the ones that enclose this paragraph.
+
+  You should only modify the parts of this file which have associated
+  instructions in <!- -> marks. The other parts of the file do not need to be
+  modified.
+-->
+
+<!DOCTYPE jnlp PUBLIC "-//Sun Microsystems, Inc//DTD JNLP Discriptor 1.1//EN"
+ "http://kano.net/dtd/jnlp-1.5.dtd">
+
+<!--
+  You should change the "codebase" value below, to the URL for where your JNLP
+  and JAR files are located.
+
+  This does not have to be the same URL as your main Scheduler site; we suggest
+  placing the JNLP, JAR, and associated files in a subfolder called "run".
+-->
+<jnlp spec="1.5"
+    codebase="http://myschool.edu/scheduler/run/"
+    href="scheduler.jnlp">
+  <information>
+
+    <!-- You should change the title and vendor to whatever your school's
+         scheduler is called. -->
+    <title>My School Scheduler</title>
+    <vendor>My School Scheduler</vendor>
+
+    <!-- You should change the "href" value to your main scheduler website,  -->
+    <homepage href="http://myschool.edu/scheduler/" />
+
+    <!-- You can change these descriptions to match your school's scheduler.
+         They will be shown at different points in the installation process, and
+         in the user's Start menu and desktop. -->
+    <description>Makes scheduling classes at My School fast and easy.</description>
+    <description kind="short">My School class scheduler</description>
+    <description kind="tooltip">My School Scheduler</description>
+
+    <!-- You should change the "href" value to the name of your school's
+         scheduler icon, in the folder you specified earlier in this file as
+         your "codebase". This should be a GIF file.
+
+         If you don't change this, the default Scheduler icon will be used. -->
+    <icon href="jnlp-icon.gif" width="32" height="32" />
+
+    <offline-allowed/>
+
+    <association extensions="schedule" mime-type="text/x-course-schedule" />
+
+    <shortcut online="false">
+      <desktop/>
+      <menu/>
+    </shortcut>
+  </information>
+
+  <security>
+      <all-permissions />
+  </security>
+  
+  <resources>
+
+    <!-- You should change this "value" URL to point to the SCHEDB course
+         database file for your school's scheduler.
+
+         The URL's are relative to the "codebase" defined earlier in this file.
+         You may also use "absolute" URL's like
+         "http://myschool.edu/scheduler/undergrad.schedb". -->
+    <property name="scheduler.dburl" value="myschool.schedb" />
+
+    <!-- You should change the "value" URL here to point to the SCHEDUI
+         scheduler UI configuration file for your school's scheduler.
+
+         The URL's are relative to the "codebase" defined earlier in this file.
+         You may also use "absolute" URL's like
+         "http://myschool.edu/scheduler/something.schedui". -->
+    <property name="scheduler.ui.configfile" value="myschool.schedui" />
+
+    <!-- These four properties control how long the Scheduler will wait when
+         downloading new SCHEDB (course database) and SCHEDUI (Scheduler
+         configuration) files when the user starts up the program.
+
+         The first property ("mintimeoutdays") is measured in days; the last 3
+         are measured in seconds.
+
+         For details on what these properties mean, see the "Scheduler at Your
+         School" tutorial. -->
+    <property name="scheduler.cache.mintimeoutdays" value="3" />
+    <property name="scheduler.cache.extraTimeoutDelta" value="1.0" />
+    <property name="scheduler.cache.mintimeout" value="3.0" />
+    <property name="scheduler.cache.maxtimeout" value="10.0" />
+
+    <j2se version="1.5+" />
+
+    <jar href="ui.jar"/>
+    <jar href="engine.jar"/>
+    <jar href="common.jar" />
+    <jar href="db.jar" />
+    <jar href="forms_rt.jar" />
+    <jar href="jdom.jar" />
+  </resources>
+
+  <resources os="Win">
+    <jar href="winlaf.jar" />
+    <nativelib href="winlaf-native.jar"/>
+  </resources>
+
+  <application-desc main-class="edu.rpi.scheduler.ui.Scheduler" />
+</jnlp>

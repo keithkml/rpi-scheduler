@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>Scheduler at Your School</title>
+  <link rel="stylesheet" type="text/css" href="help.css">
+  <style type="text/css">
+.filename { font-style: italic; }
+  </style>
+</head>
+<body>
+<!--
+ RPI Scheduler 2005
+
+-->
+<div class="content">
+<div class="item item-top">
+<h1>Setting up Scheduler at your
+school</h1>
+<p>
+The University Scheduler Engine was designed from the ground up to
+provide a flexible and configurable system that could be used at any
+school with a minimal amount of setup. This
+document will guide you through the process of setting up a Scheduler
+installation
+at your school.</p>
+<h2>The sample site</h2>
+<p>The University Scheduler Engine
+distribution download comes with a
+sample Scheduler download and installation site that you can use as a
+template for your school's installation of the Scheduler.</p>
+<p>The sample site contains
+several different types of files:</p>
+<ul>
+  <li>HTML pages and Javascript
+and VBScript scripts</li>
+  <li>Scheduler download and
+installation files</li>
+  <li>A Scheduler configuration
+file, so you can customize the Scheduler for your school</li>
+  <li>A sample Scheduler database
+file, to help you in creating a database file for your school</li>
+</ul>
+<p>Each of these groups of files
+is explained in the following sections.</p>
+<h3>The site itself (HTML and
+scripts)</h3>
+<p>If you've looked at the sample
+site files, you may be wondering why
+you
+need three HTML pages and two scripts just so people can download the
+Scheduler. It's because the Scheduler is deployed with Java Web Start
+(JWS) technology, a powerful, cross-platform system for distributing
+Java-based desktop applications. This means that the Scheduler can be
+installed on Windows, Mac (once Apple updates Java for Mac to version
+5.0), Linux, and many other types of computers,
+without having to create a separate download for each type of computer.</p>
+<p>However, because of this
+flexibility, download pages for JWS-based
+applications must be somewhat complicated to make the download process
+as simple as possible for users of the Scheduler. You don't need to
+worry about this very much,
+though. Your only responsibility is to customize these pages so that
+they fit in with the rest of your website.</p>
+<p>You can change the pages in any
+way you like, as long as you don't
+change the link URL's or the scripts. For an example of a customized
+sample site, you can visit the <a
+ href="http://rpischeduler.com/install">RPI
+Scheduler installation site</a>.</p>
+<h3>The Scheduler download and
+installation files<br>
+</h3>
+<p>When a student downloads and
+installs your school's Scheduler, his
+or her computer's Java Web Start (mentioned above) must download
+several program files from the server. These are the <span
+ class="filename">scheduler.jnlp</span>
+file, the <span class="filename">.jar</span>
+files, and the <span class="filename">jnlp-icon.gif</span>
+icon file. These are
+located in the <span class="filename">run</span>
+subfolder
+of the sample site. The application consists of 8 JAR files, which add
+up to about
+1 megabyte of downloaded program files per student installation.</p>
+<p>Two more files reside in the <span class="filename">run</span>
+subfolder: <span class="filename">myschool.schedui</span>
+and <span class="filename">myschool.schedb</span>.
+These
+will be discussed in the next section.<br>
+</p>
+<h3>Configuring your Scheduler</h3>
+<p>To customize the Scheduler for
+your school, you must edit the <span class="filename">scheduler.jnlp</span>
+file mentioned above
+with a text editor (like Notepad) or an XML editor, and follow the
+instructions in that file to customize the Scheduler installation for
+your school. You must also change <span class="filename">jnlp-icon.gif</span>
+to be a
+32x32 GIF icon that represents your school or your Scheduler. This icon
+will be used for your users' Start Menu icons and desktop icon.</p>
+<p>Next, you must edit the
+Scheduler UI configuration file <span class="filename">myschool.schedui</span>
+with a text or XML
+editor, to customize it for your school. This file defines how the
+Scheduler looks and feels to your
+users. It defines the window icons, the title bars, the way courses are
+displayed, and more. Instructions on how to modify the file are
+contained within the file itself.</p>
+<h3>The course database</h3>
+<p>The Scheduler reads course
+database information from the <span class="filename">myschool.schedb</span>
+file. This is an
+XML file which contains information about every course, department, and
+section at your school. The format of the file is very straightforward,
+and by its nature is very extensible. This means that if you need to
+include custom information about courses, departments, or professors,
+you can modify the database format easily without having to re-write
+any of the Scheduler's code.</p>
+<p>
+You will probably need to write a computer program to create your
+school's Scheduler course database file. The program can be written in
+almost any language, as long as it can access your school's actual
+course
+database and write the data out to an XML file.</p>
+<h2>Updating your school's
+Scheduler</h2>
+<p>The University Scheduler Engine
+was designed to allow easy updating
+of
+data, configuration, and program files. The Scheduler will do its best
+to keep your users updated with the latest updates you make.<br>
+</p>
+<h3>Updating the course database
+file and UI configuration<br>
+</h3>
+<p>When the Scheduler starts up,
+it checks your website for updates to the <span class="filename">myschool.schedb</span>
+and <span class="filename">myschool.schedui</span>
+files. You can feel free to update these files with whatever major or
+minor changes you would like to make, and your users, provided that
+their Internet connections are working, will see the updates the next
+time they run the Scheduler.<br>
+</p>
+<p>If the connection to your
+website server is slow, the scheduler will wait a certain amount of
+time for the update connection to time out, so the user does not need
+to wait for too long to start the program. The timeout values are
+configurable, but the standard settings work like this: if the user's
+copy of the file was downloaded from your website 3 days ago or more
+recently, the Scheduler will wait for 3 seconds before the connection
+"times out." For every day after that, the Scheduler will wait 1 extra
+second, up to a limit of 10 seconds. So, for example, if the user last
+downloaded the file 5 days ago, the Scheduler will wait a maximum of 5
+seconds for the connection to time out before starting up.</p>
+<p>As mentioned above, the timeout
+values are configurable. These values can be set in the JNLP file <span
+ class="filename">scheduler.jnlp</span>,
+in the <code>&lt;resources&gt;</code>
+section.</p>
+<h3>Updating program files
+(upgrading the Scheduler) </h3>
+<p>The Scheduler is not as adamant
+about
+keeping up to date with program updates as it is about updating the
+course database and configuration files. This is partly because
+automatic updates can frustrate users, when something that used to work
+a certain way no longer works, because of an update the user never
+asked for. Even when the "certain way" was a bug or an unintended
+feature, users may still become frustrated.<br>
+</p>
+<p>To upgrade their copy of the
+Scheduler, your users must visit your website and go through the
+installation process again. This process will upgrade the Scheduler
+program files to the latest version you've posted on your website.</p>
+<p>The Scheduler does not provide
+a means of notifying users of new versions. (This is a known problem
+with the Scheduler, and will be addressed in a later release.) To work
+around it, you should post updates to websites or forums that your
+users will read, or e-mail your users to tell them to upgrade.<br>
+</p>
+<h2>More information</h2>
+<p>The Scheduler is a complex
+application in some ways. If you have any further questions about
+setting up and installing the University Scheduler Engine at your
+school, you should feel free to e-mail the author, <a
+ href="mailto:keith@cs.oswego.edu">Keith
+Lea</a>, or visit the Scheduler
+website help section.
+</p>
+</div>
+</div>
+<div class="footer">
+<div class="copyright">&copy; 2005 Keith Lea </div>
+</div>
+</body>
+</html>
