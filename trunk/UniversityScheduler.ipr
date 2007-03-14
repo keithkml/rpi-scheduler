@@ -376,7 +376,71 @@
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" assert-keyword="true" jdk-15="true" project-jdk-name="1.5" />
-  <component name="ProjectRunConfigurationManager" />
+  <component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="Scheduler" type="Application" factoryName="Application" enabled="false" merge="false">
+      <option name="MAIN_CLASS_NAME" value="edu.rpi.scheduler.ui.Scheduler" />
+      <option name="VM_PARAMETERS" value="-Dscheduler.dburl=docs/sample-rpi-data/rpi.schedb -Dscheduler.ui.configfile=docs/sample-rpi-data/rpi.schedui" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <module name="UI" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="3098" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <configuration default="false" name="Scheduler (old DB format)" type="Application" factoryName="Application" enabled="false" merge="false">
+      <option name="MAIN_CLASS_NAME" value="edu.rpi.scheduler.ui.Scheduler" />
+      <option name="VM_PARAMETERS" value="-Dscheduler.dburl=docs/sample-rpi-data/cleandb.txt -Dscheduler.ui.configfile=docs/sample-rpi-data/rpi.schedui -Dscheduler.dbplugin=edu.rpi.scheduler.olddbplug.OldDbPlugin" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <module name="UI" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="1759" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <configuration default="false" name="Parse RPI Data" type="Application" factoryName="Application" enabled="false" merge="false">
+      <option name="MAIN_CLASS_NAME" value="edu.rpi.dbparser.Parse" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="http://sis.rpi.edu/reg/zs200709.txt out.schedb" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/rpidb" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <module name="RPI DB Parser" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="2996" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="ResourceManagerContainer">
     <option name="myResourceBundles">
       <value>
