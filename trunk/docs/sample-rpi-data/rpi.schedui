@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE schedui PUBLIC "-//Keith Lea//DTD Scheduler 2005//EN"
+ "http://kano.net/dtd/schedui-2005.dtd">
+<schedui>
+  <program-info>
+    <program-name>RPI Scheduler</program-name>
+    <admin name="Keith Lea" email="leak@rpi.edu" />
+
+    <about-box-text><![CDATA[
+      The RPI Scheduler is developed by Keith Lea, a senior at RPI, with help
+      from Anish Shah, an RPI alumnus, and Vinay Shah, a senior at RPI.
+      <br><br>
+      Thanks to Charlie Hayes, Sam Stephenson, Tom Manhart, Zif Horton, Aaron
+      friend, for testing and ideas for the Scheduler.
+      <br><br>
+      Thanks to Charlie Hayes for icon design.
+      <br>
+      Thanks to Sam Stephenson for the RPI Scheduler website design.
+      ]]>
+    </about-box-text>
+
+    <help-links>
+      <help-link href="http://rpischeduler.com/help">Scheduler Help Website</help-link>
+      <help-link href="http://rpischeduler.com/help">Report a Bug</help-link>
+    </help-links>
+  </program-info>
+
+  <ui-info>
+    <icons>
+      <icon type="main" href="icon-16x16.png" />
+      <icon type="course-preview" href="icon-16x16.png" />
+      <icon type="view-schedule" href="icon-16x16.png" />
+      <icon type="loading-progress" href="icon-16x16.png" />
+    </icons>
+    <default-grid-range days="mon,tue,wed,thu,fri,sat"
+      start-time="6:00 AM" end-time="11:00 PM" />
+
+    <window-sizes>
+      <window-size type="main" width="780" height="590"/>
+      <window-size type="course-preview" width="713" height="363" />
+      <window-size type="view-schedule" width="678" height="439" />
+    </window-sizes>
+
+    <display-formats>
+      <display-format type="very-short-course">{0} {2}</display-format>
+      <display-format type="short-course">{0} {2} - {3}</display-format>
+    </display-formats>
+  </ui-info>
+
+
+  <search-types>
+    <search-type name="All">
+      <search-key name="course-name" />
+      <search-key name="course-number" />
+      <search-key name="professor" />
+      <search-key name="location" />
+      <search-key name="section-id" />
+    </search-type>
+
+    <search-type name="Course name">
+      <search-key name="course-name" />
+      <search-key name="course-number" />
+    </search-type>
+
+    <search-type name="Professor">
+      <search-key name="professor" />
+    </search-type>
+
+    <search-type name="Class location">
+      <search-key name="location" />
+    </search-type>
+
+    <search-type name="Section CRN">
+      <search-key name="section-id" />
+    </search-type>
+  </search-types>
+</schedui>
