@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module relativePaths="true" type="JAVA_MODULE" version="4">
+  <component name="LvcsConfiguration">
+    <option name="LOCAL_VCS_ENABLED" value="true" />
+    <option name="LOCAL_VCS_PURGING_PERIOD" value="259200000" />
+    <option name="SHOW_CHANGES_ONLY" value="false" />
+  </component>
+  <component name="ModuleRootManager" />
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/olddbplug/bin" />
+    <content url="file://$MODULE_DIR$/olddbplug">
+      <sourceFolder url="file://$MODULE_DIR$/olddbplug/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="SchedulerDB" />
+    <orderEntry type="module" module-name="Common" />
+    <orderEntryProperties />
+  </component>
+</module>
+
