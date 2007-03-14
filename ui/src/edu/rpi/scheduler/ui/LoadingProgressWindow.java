@@ -42,7 +42,6 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 public class LoadingProgressWindow extends MonitoredJFrame {
-    //TODO: allow progress window to be killed
     private JPanel mainPanel;
     private JTextPane loadingCourseLabel;
     private JLabel mainLoadingLabel;
