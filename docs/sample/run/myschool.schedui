@@ -65,8 +65,8 @@
       third screens, and in the course preview window.
 
       EXAMPLE USE:
-      If your school doesn’t have class on Saturday and Sunday, you could use
-      "mon,tue,wed,thu,fri" for the "days" value. If your school doesn’t have
+      If your school doesn't have class on Saturday and Sunday, you could use
+      "mon,tue,wed,thu,fri" for the "days" value. If your school doesn't have
       classes before 8:00 AM, you could write "8:00 AM" as the "start-time"
       value.
      -->
