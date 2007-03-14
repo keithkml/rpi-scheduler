@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module relativePaths="true" type="JAVA_MODULE" version="4">
+  <component name="ModuleRootManager" />
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/ui/bin" />
+    <content url="file://$MODULE_DIR$/ui">
+      <sourceFolder url="file://$MODULE_DIR$/ui/res" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ui/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="SchedulerDB" />
+    <orderEntry type="module" module-name="Scheduler Engine" />
+    <orderEntry type="module" module-name="Common" />
+    <orderEntry type="library" name="forms_rt" level="project" />
+    <orderEntry type="library" name="jdom" level="application" />
+    <orderEntry type="library" name="winlaf" level="project" />
+    <orderEntry type="library" name="Java Web Start" level="project" />
+    <orderEntryProperties />
+  </component>
+</module>
+
