@@ -264,9 +264,7 @@ public class SchedulerWindow extends MonitoredJFrame {
                 msg, "Scheduler error", JOptionPane.ERROR_MESSAGE);
     }
 
-
-
-    private void closeWindow() {
+    public void closeWindow() {
         if (closed) return;
         closed = true;
         setVisible(false);

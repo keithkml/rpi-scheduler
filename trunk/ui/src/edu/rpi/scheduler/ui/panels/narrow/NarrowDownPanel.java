@@ -70,8 +70,11 @@ import java.util.Set;
 public class NarrowDownPanel extends DefaultSubpanel {
     //TOMAYBE: show times for blocked courses in blocked time grid
     //TOMAYBE: allow to see course times from narrow down panel
-    //TODO: make sure uncheck section works
     //TOMAYBE: show warning icon when user blocked out all the courses, etc.
+    //TODO: make sure uncheck section works
+    //TODO: fix time selection not updating blocked courses
+    //TODO: fix not being able to select a column
+    
     private JTree sectionTree;
     private JButton clearButton;
     private TimeSelector timeSelector;

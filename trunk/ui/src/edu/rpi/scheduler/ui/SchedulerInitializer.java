@@ -57,10 +57,13 @@ import java.util.logging.Logger;
 import java.net.URL;
 import java.net.MalformedURLException;
 import java.awt.Image;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class SchedulerInitializer {
     private static final Logger logger
             = Logger.getLogger(SchedulerInitializer.class.getName());
+    //TOMAYBE: load cached UI config before looking over network
 
     public static final String SYSPROP_DBURL = "scheduler.dburl";
     public static final String SYSPROP_DBPLUGINNAME = "scheduler.dbplugin";
@@ -76,7 +79,15 @@ public class SchedulerInitializer {
     private final Object initialThingsLock = new Object();
 
     public void init() {
-        progressWindow.setMessage("Loading scheduler...");
+        progressWindow.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                worker.tryToStop();
+                progressWindow.setMessage("Closing...");
+                progressWindow.setVisible(false);
+                schedulerWindow.closeWindow();
+            }
+        });
+        progressWindow.setMessage("Loading...");
         progressWindow.pack();
         progressWindow.setLocationRelativeTo(null);
         progressWindow.setVisible(true);

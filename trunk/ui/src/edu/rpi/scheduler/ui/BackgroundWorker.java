@@ -43,6 +43,7 @@ import java.util.List;
  */
 public class BackgroundWorker extends Thread {
     private final LinkedList<Runnable> workees = new LinkedList<Runnable>();
+    private volatile boolean stop = false;
 
     /**
      * Creates a new background worker, but does not start its thread. Call
@@ -59,7 +60,7 @@ public class BackgroundWorker extends Thread {
     public void run() {
         try {
             LinkedList<Runnable> workees = this.workees;
-            while (true) {
+            while (!stop) {
                 Runnable workee;
                 synchronized(workees) {
                     while (workees.isEmpty()) workees.wait();
@@ -69,7 +70,7 @@ public class BackgroundWorker extends Thread {
 
                 workee.run();
             }
-        } catch (InterruptedException e) { }
+        } catch (InterruptedException stop) { }
     }
 
     /**
@@ -91,4 +92,15 @@ public class BackgroundWorker extends Thread {
             return workees.isEmpty();
         }
     }
+
+    public void tryToStop() {
+        stop = true;
+        synchronized(workees) {
+            workees.clear();
+            workees.notifyAll();
+        }
+        interrupt();
+    }
+
+    public boolean isTryingToStop() { return stop; }
 }
