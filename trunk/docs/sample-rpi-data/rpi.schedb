@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schedb generated="Tue Mar 13 14:02:31 PDT 2007" minutes-per-block="30">
+<schedb generated="Wed Mar 14 15:43:58 PDT 2007" minutes-per-block="30">
   <dept abbrev="ADMN" name="Administration">
     <course number="1010" name="ORAL COMM FOR TA's I" min-credits="0" max-credits="0" grade-type="pass-fail">
       <section crn="80937" number="1" seats="20">
@@ -164,11 +164,6 @@
     <course number="6870" name="SONICS RESEARCH LAB 1" min-credits="4" max-credits="4" grade-type="normal">
       <section crn="81227" number="1" seats="20">
         <period type="lecture" professor="Xiang" days="mon,thu" starts="12:00PM" ends="1:50PM" />
-      </section>
-    </course>
-    <course number="6941" name="DOCTORAL SEMINAR" min-credits="1" max-credits="6" grade-type="normal">
-      <section crn="82432" number="2" seats="10">
-        <period type="lecture" professor="Braasch/Balfour/Krueg" days="tue" starts="4:00PM" ends="5:50PM" />
       </section>
     </course>
     <course number="6962" name="TOPICS IN ECOLOGICAL DESI" min-credits="3" max-credits="3" grade-type="normal">
@@ -824,7 +819,7 @@
     </course>
     <course number="2110" name="EQUILIBRIUM CHEM AND QUAN" min-credits="3" max-credits="3" grade-type="normal">
       <section crn="81561" number="1" seats="30">
-        <period type="lecture" professor="Stenken" days="mon,wed,thu" starts="1:00PM" ends="1:50PM" />
+        <period type="lecture" professor="Stenken" days="mon,wed,thu" starts="12:00PM" ends="12:50PM" />
       </section>
     </course>
     <course number="2120" name="EXPERIMENTAL CHEMISTRY I" min-credits="2" max-credits="2" grade-type="normal">
@@ -1573,7 +1568,7 @@
         <period type="unknown" professor="Staff" days="mon" starts="10:00AM" ends="11:50AM" />
       </section>
       <section crn="81226" number="2" seats="45">
-        <period type="lecture" professor="Lvov" days="tue,fri" starts="10:00AM" ends="11:50AM" />
+        <period type="lecture" professor="Staff" days="tue,fri" starts="10:00AM" ends="11:50AM" />
       </section>
       <note>MEETS WITH MATH 4800</note>
     </course>
@@ -3427,19 +3422,19 @@
       </section>
       <section crn="80683" number="5" seats="30">
         <period type="lecture" professor="Piper" days="tue,wed,fri" starts="2:00PM" ends="2:50PM" />
-        <period type="recitation" professor="Staff" days="mon,thu" starts="8:00AM" ends="8:50AM" />
+        <period type="recitation" professor="Staff" days="mon,thu" starts="6:00PM" ends="6:50PM" />
       </section>
       <section crn="80684" number="6" seats="30">
         <period type="lecture" professor="Piper" days="tue,wed,fri" starts="2:00PM" ends="2:50PM" />
-        <period type="recitation" professor="Staff" days="mon,thu" starts="8:00AM" ends="8:50AM" />
+        <period type="recitation" professor="Staff" days="mon,thu" starts="6:00PM" ends="6:50PM" />
       </section>
       <section crn="80685" number="7" seats="30">
         <period type="lecture" professor="Piper" days="tue,wed,fri" starts="2:00PM" ends="2:50PM" />
-        <period type="recitation" professor="Staff" days="mon,thu" starts="12:00PM" ends="12:50PM" />
+        <period type="recitation" professor="Staff" days="mon,thu" starts="7:00PM" ends="7:50PM" />
       </section>
       <section crn="80686" number="8" seats="30">
         <period type="lecture" professor="Piper" days="tue,wed,fri" starts="2:00PM" ends="2:50PM" />
-        <period type="recitation" professor="Staff" days="mon,thu" starts="12:00PM" ends="12:50PM" />
+        <period type="recitation" professor="Staff" days="mon,thu" starts="7:00PM" ends="7:50PM" />
       </section>
       <section crn="80987" number="9" seats="30">
         <period type="lecture" professor="Blue" days="mon,wed,thu" starts="1:00PM" ends="1:50PM" />
@@ -3626,19 +3621,19 @@
         <period type="recitation" professor="Staff" days="tue,fri" starts="2:00PM" ends="2:50PM" />
       </section>
       <section crn="81125" number="5" seats="30">
-        <period type="lecture" professor="Kapila" days="tue,wed,fri" starts="11:00AM" ends="11:50AM" />
+        <period type="lecture" professor="Staff" days="tue,wed,fri" starts="11:00AM" ends="11:50AM" />
         <period type="recitation" professor="Staff" days="mon,thu" starts="4:00PM" ends="4:50PM" />
       </section>
       <section crn="81122" number="6" seats="30">
-        <period type="lecture" professor="Kapila" days="tue,wed,fri" starts="11:00AM" ends="11:50AM" />
+        <period type="lecture" professor="Staff" days="tue,wed,fri" starts="11:00AM" ends="11:50AM" />
         <period type="recitation" professor="Staff" days="mon,thu" starts="1:00PM" ends="1:50PM" />
       </section>
       <section crn="81123" number="7" seats="30">
-        <period type="lecture" professor="Kapila" days="tue,wed,fri" starts="11:00AM" ends="11:50AM" />
+        <period type="lecture" professor="Staff" days="tue,wed,fri" starts="11:00AM" ends="11:50AM" />
         <period type="recitation" professor="Staff" days="mon,thu" starts="11:00AM" ends="11:50AM" />
       </section>
       <section crn="81124" number="8" seats="30">
-        <period type="lecture" professor="Kapila" days="tue,wed,fri" starts="11:00AM" ends="11:50AM" />
+        <period type="lecture" professor="Staff" days="tue,wed,fri" starts="11:00AM" ends="11:50AM" />
         <period type="recitation" professor="Staff" days="mon,thu" starts="3:00PM" ends="3:50PM" />
       </section>
     </course>
@@ -3790,7 +3785,7 @@
         <period type="lecture" professor="Lvov" days="mon,thu" starts="10:00AM" ends="11:50AM" />
       </section>
       <section crn="81205" number="2" seats="45">
-        <period type="lecture" professor="Li" days="tue,fri" starts="10:00AM" ends="11:50AM" />
+        <period type="lecture" professor="Staff" days="tue,fri" starts="10:00AM" ends="11:50AM" />
       </section>
       <note>MEETS WITH CSCI 4800</note>
     </course>
@@ -3816,7 +3811,7 @@
     </course>
     <course number="6600" name="METHODS OF APPLIED MATHEM" min-credits="4" max-credits="4" grade-type="normal">
       <section crn="80718" number="1" seats="25">
-        <period type="lecture" professor="Kapila" days="tue,fri" starts="12:00PM" ends="1:50PM" />
+        <period type="lecture" professor="Staff" days="tue,fri" starts="12:00PM" ends="1:50PM" />
       </section>
     </course>
     <course number="6790" name="INTRO  HYDRODYNAMIC STABI" min-credits="4" max-credits="4" grade-type="normal">
@@ -4601,7 +4596,8 @@
     </course>
     <course number="4740" name="PSYCHOLOGY AND THE LAW" min-credits="4" max-credits="4" grade-type="normal">
       <section crn="81559" number="1" seats="50">
-        <period type="lecture" professor="VerWys" days="wed" starts="8:00AM" ends="11:50AM" />
+        <period type="lecture" professor="VerWys" days="wed" starts="10:00AM" ends="11:50AM" />
+        <period type="unknown" professor="Staff" days="wed" starts="12:00PM" ends="1:50PM" />
       </section>
     </course>
     <course number="4963" name="SEMINAR IN HEDONOMICS" min-credits="4" max-credits="4" grade-type="normal">
