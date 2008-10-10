@@ -5,7 +5,6 @@
     <option name="LOCAL_VCS_PURGING_PERIOD" value="259200000" />
     <option name="SHOW_CHANGES_ONLY" value="false" />
   </component>
-  <component name="ModuleRootManager" />
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/rpidb/bin" />
     <content url="file://$MODULE_DIR$/rpidb">
@@ -13,9 +12,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jdom" level="application" />
     <orderEntry type="module" module-name="SchedulerDB" />
     <orderEntry type="module" module-name="Common" />
+    <orderEntry type="library" name="jdom" level="project" />
     <orderEntryProperties />
   </component>
 </module>
