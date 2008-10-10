@@ -5,7 +5,6 @@
     <option name="LOCAL_VCS_PURGING_PERIOD" value="259200000" />
     <option name="SHOW_CHANGES_ONLY" value="false" />
   </component>
-  <component name="ModuleRootManager" />
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/engine/bin" />
     <content url="file://$MODULE_DIR$/engine">
