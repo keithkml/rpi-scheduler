@@ -11,7 +11,7 @@ import javax.jdo.annotations.PrimaryKey;
 import java.util.Date;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class Semester {
+public class CourseXml {
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     private Key key;
@@ -29,7 +29,7 @@ public class Semester {
     @Persistent
     private Blob courseXml;
 
-    public Semester(int semester, Date lastModified, Date parseTimestamp, byte[] courseXml) {
+    public CourseXml(int semester, Date lastModified, Date parseTimestamp, byte[] courseXml) {
         this.semester = semester;
         this.lastModified = lastModified;
         this.parseTimestamp = parseTimestamp;
@@ -42,5 +42,9 @@ public class Semester {
 
     public Blob getCourseXml() {
         return courseXml;
+    }
+
+    public int getSemester() {
+        return semester;
     }
 }

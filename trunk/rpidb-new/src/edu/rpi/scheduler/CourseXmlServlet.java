@@ -13,38 +13,63 @@ public class CourseXmlServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uri = request.getRequestURI();
         String subpath = uri.substring(8);
-        int subpathInt;
-        try {
-            subpathInt = Integer.parseInt(subpath);
-        } catch (NumberFormatException e) {
-            response.sendError(404, "No such semester " + subpath);
+        if (!subpath.matches("\\d{6}.xml")) {
+            response.sendError(404, "No such file " + subpath);
             return;
         }
-        Semester result = getMostRecentXml(subpathInt);
-        if (result == null) {
-            response.sendError(404, "No such semester " + subpath);
+        String semesterStr = subpath.substring(0, 6);
+        int semesterInt;
+        try {
+            semesterInt = Integer.parseInt(semesterStr);
+        } catch (NumberFormatException e) {
+            response.sendError(404, "Invalid semester " + semesterStr + ", URL should end with '201101.xml'");
             return;
+        }
+        String requestedVersion = request.getParameter("v");
+        CourseXml courseXml;
+        if (requestedVersion != null) {
+            long requestedVersionLong;
+            try {
+                requestedVersionLong = Long.parseLong(requestedVersion);
+            } catch (NumberFormatException e) {
+                response.sendError(404, "Invalid version " + requestedVersion);
+                return;
+            }
+            courseXml = PMF.get().getPersistenceManager().getObjectById(CourseXml.class,
+                                                                        requestedVersionLong);
+            if (courseXml == null || courseXml.getSemester() != semesterInt) {
+                response.sendError(404, "No such semester " + semesterInt + " and version " + requestedVersionLong);
+                return;
+            }
+        } else {
+            courseXml = getMostRecentXml(semesterInt);
+            if (courseXml == null) {
+                response.sendError(404, "No such semester " + semesterInt);
+                return;
+            }
         }
         
         response.setStatus(200);
         response.setContentType("text/xml");
         response.setCharacterEncoding("UTF-8");
 
-        byte[] xml = result.getCourseXml().getBytes();
-        response.setBufferSize(1000);
+        byte[] xml = courseXml.getCourseXml().getBytes();
+        response.setContentLength(xml.length);
+        int bufferSize = 10*1024;
         ServletOutputStream out = response.getOutputStream();
-        for (int i = 0; i < xml.length; i += 1000) {
-            out.write(xml, i, Math.min(xml.length,i+1000));
+        for (int i = 0; i < xml.length; i += bufferSize) {
+            out.write(xml, i, Math.min(xml.length-i,bufferSize));
+            out.flush();
         }
     }
 
     @SuppressWarnings({"unchecked"})
-    public static Semester getMostRecentXml(int semester) {
-        Query query = PMF.get().getPersistenceManager().newQuery(Semester.class);
+    public static CourseXml getMostRecentXml(int semester) {
+        Query query = PMF.get().getPersistenceManager().newQuery(CourseXml.class);
         query.setFilter("semester == :semester");
         query.setOrdering("lastModified descending");
         query.setRange(0,1);
-        List<Semester> list = (List<Semester>) query.execute(semester);
+        List<CourseXml> list = (List<CourseXml>) query.execute(semester);
         return list.isEmpty() ? null : list.get(0);
     }
 }
