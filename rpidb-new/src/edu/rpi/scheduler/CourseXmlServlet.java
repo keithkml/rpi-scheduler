@@ -7,10 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class CourseXmlServlet extends HttpServlet {
+    private static final Logger LOGGER = Logger.getLogger(CourseXmlServlet.class.getName());
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        long ifModifiedSinceDate = request.getDateHeader("If-modified-since");
+        if (ifModifiedSinceDate != -1)
+            LOGGER.info("Requested if-modified-since " + new Date(ifModifiedSinceDate));
         String uri = request.getRequestURI();
         String subpath = uri.substring(8);
         if (!subpath.matches("\\d{6}.xml")) {
@@ -48,8 +55,15 @@ public class CourseXmlServlet extends HttpServlet {
                 return;
             }
         }
+
+        long parseTimestampLong = courseXml.getParseTimestamp().getTime();
+        if (parseTimestampLong < ifModifiedSinceDate) {
+            response.setStatus(302);
+            return;
+        }
         
         response.setStatus(200);
+        response.setDateHeader("Last-Modified", parseTimestampLong);
         response.setContentType("text/xml");
         response.setCharacterEncoding("UTF-8");
 

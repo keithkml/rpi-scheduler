@@ -323,10 +323,10 @@
   </component>
   <component name="ProjectRunConfigurationManager">
     <configuration default="false" name="Scheduler" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" runner="emma" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="emma" />
       <extension name="snapshooter" />
       <option name="MAIN_CLASS_NAME" value="edu.rpi.scheduler.ui.Scheduler" />
-      <option name="VM_PARAMETERS" value="-Dscheduler.dburl=docs/sample-rpi-data/rpi.schedb -Dscheduler.ui.configfile=docs/sample-rpi-data/rpi.schedui" />
+      <option name="VM_PARAMETERS" value="-Dscheduler.dburl=rpidb-new/etc/201101.xml -Dscheduler.ui.configfile=docs/sample-rpi-data/rpi.schedui" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -340,6 +340,9 @@
         <option name="DEBUG_PORT" value="3098" />
         <option name="TRANSPORT" value="0" />
         <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Profile ">
+        <option name="myExternalizedOptions" value="&#13;&#10;snapshots-dir=&#13;&#10;additional-options2=onexit\=snapshot&#13;&#10;" />
       </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
@@ -370,7 +373,7 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="Parse RPI Data" type="Application" factoryName="Application">
+    <configuration default="false" name="Parse RPI Data (old)" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="emma" />
       <extension name="snapshooter" />
       <option name="MAIN_CLASS_NAME" value="edu.rpi.dbparser.Parse" />
@@ -390,7 +393,7 @@
         <option name="LOCAL" value="false" />
       </RunnerSettings>
       <RunnerSettings RunnerId="Profile ">
-        <option name="myExternalizedOptions" value="&#10;snapshots-dir=&#10;" />
+        <option name="myExternalizedOptions" value="&#13;&#10;snapshots-dir=&#13;&#10;additional-options2=onexit\=snapshot&#13;&#10;" />
       </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
