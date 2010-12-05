@@ -23,9 +23,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class NewRpiParser implements Serializable {
-    private static final Map<String,String> departmentNames = new HashMap<String, String>();
+    private static final Logger LOGGER = Logger.getLogger(NewRpiParser.class.getName());
+
+    private static final Map<String, String> departmentNames = new HashMap<String, String>();
 
     static {
         departmentNames.put("ARCH", "Architecture");
@@ -81,7 +84,8 @@ public class NewRpiParser implements Serializable {
         doc.getDocumentElement().normalize();
 
         // Time Stamp Conversion
-        String strDateStamp = getDateStampString(doc);
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd hh:mm:ss z yyyy");
+        String strDateStamp = sdf.format(new Date());
 
         // XML output begins
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -106,28 +110,6 @@ public class NewRpiParser implements Serializable {
         return byteArrayOutputStream.toByteArray();
     }
 
-    private static String getDateStampString(Document doc) {
-        String strTimeStamp = doc.getDocumentElement().getAttribute("timestamp");
-        long longTimeStamp = 0;
-        String strDateStamp = "";
-        try {
-            longTimeStamp = Long.parseLong(strTimeStamp.trim());
-        } catch (NumberFormatException nfe) {
-            //System.out.println("NumberFormatException: " + nfe.getMessage());
-        }
-
-        if (longTimeStamp > 0) {
-            //System.out.println("timestamp = "+longTimeStamp);
-            Date date = new Date(longTimeStamp);
-            Calendar cal = new GregorianCalendar();
-            SimpleDateFormat sdf = new SimpleDateFormat("MMM dd hh:mm:ss z yyyy");
-            sdf.setCalendar(cal);
-            cal.setTime(date);
-            strDateStamp = sdf.format(date);
-        }
-        return strDateStamp;
-    }
-
     private String parseCourse(PrintStream output, String strDept, Element elmntCourse) {
         if ((strDept.length() == 0) || !strDept.equalsIgnoreCase(elmntCourse.getAttribute("dept"))) {
             if (strDept.length() == 0) {
@@ -142,25 +124,28 @@ public class NewRpiParser implements Serializable {
         if (strName != null && strName.length() > 0) {
             strName = strName.replace("&", "&amp;");
         }
-        output.print("<course number=\"" + elmntCourse.getAttribute("num") + "\""
-                     + " name=\"" + strName + "\""
-                     + " min-credits=\"" + elmntCourse.getAttribute("credmin") + "\""
-                     + " max-credits=\"" + elmntCourse.getAttribute("credmax") + "\""
-                     + " grade-type=\"" + getGradeTypeString(elmntCourse) + "\"" + ">");
 
         //  Section
+        StringBuilder sectionsXml = new StringBuilder();
         NodeList nodeLstSection = elmntCourse.getElementsByTagName("SECTION");
         for (int s2 = 0; s2 < nodeLstSection.getLength(); s2++) {
             Node nodeSection = nodeLstSection.item(s2);
             if (nodeSection.getNodeType() == Node.ELEMENT_NODE) {
                 Element elmntSection = (Element) nodeSection;
 
-                parseSection(output, elmntSection);
+                sectionsXml.append(parseSection(elmntSection));
             }
         }
 
-        // End Course
-        output.println("</course>");
+        if (sectionsXml.length() > 0) {
+            output.println("<course number=\"" + elmntCourse.getAttribute("num") + "\""
+                         + " name=\"" + strName + "\""
+                         + " min-credits=\"" + elmntCourse.getAttribute("credmin") + "\""
+                         + " max-credits=\"" + elmntCourse.getAttribute("credmax") + "\""
+                         + " grade-type=\"" + getGradeTypeString(elmntCourse) + "\"" + ">");
+            output.print(sectionsXml);
+            output.println("</course>");
+        }
         return strDept;
     }
 
@@ -178,29 +163,35 @@ public class NewRpiParser implements Serializable {
         return realGT;
     }
 
-    private void parseSection(PrintStream output, Element elmntSection) {
-        output.println("<section crn=\"" + elmntSection.getAttribute("crn") + "\""
-                       + " number=\"" + elmntSection.getAttribute("num") + "\""
-                       + " seats=\"" + elmntSection.getAttribute("seats") + "\"" + ">");
+    private String parseSection(Element elmntSection) {
+        String num = elmntSection.getAttribute("num");
+        try {
+            Integer.parseInt(num);
+        } catch (NumberFormatException e) {
+            // skip this one. these are weird.
+            return "";
+        }
 
-        // Period
-
+        StringBuilder periodsXml = new StringBuilder();
         NodeList nodeLstPeriod = elmntSection.getElementsByTagName("PERIOD");
         for (int s3 = 0; s3 < nodeLstPeriod.getLength(); s3++) {
             Node nodePeriod = nodeLstPeriod.item(s3);
             if (nodePeriod.getNodeType() == Node.ELEMENT_NODE) {
                 Element elmntPeriod = (Element) nodePeriod;
-                parsePeriod(output, elmntPeriod);
-
-
+                periodsXml.append(parsePeriod(elmntPeriod));
             }
         }
 
-        // End Section
-        output.println("</section>");
+        if (periodsXml.length() == 0)
+            return "";
+
+        return "<section crn=\"" + elmntSection.getAttribute("crn") + "\""
+                       + " number=\"" + num + "\""
+                       + " seats=\"" + elmntSection.getAttribute("seats") + "\"" + ">" + periodsXml
+                       + "</section>\n";
     }
 
-    private void parsePeriod(PrintStream output, Element elmntPeriod) {
+    private String parsePeriod(Element elmntPeriod) {
         // Days
         String strDays = "";
         String strComma = "";
@@ -256,14 +247,31 @@ public class NewRpiParser implements Serializable {
             strEndTime = null;
         }
 
-        output.print("<period type=\"" + elmntPeriod.getAttribute("type") + "\""
-                     + " professor=\"" + elmntPeriod.getAttribute("instructor") + "\" "
-                     + strDays);
-        if (strStartTime != null && strEndTime != null) {
-            output.print(" starts=\"" + strStartTime + "\""
-                         + " ends=\"" + strEndTime + "\"");
+        if (strStartTime == null || strEndTime == null)
+            return "";
+
+        String type = getPeriodType(elmntPeriod.getAttribute("type"));
+        if (type == null) {
+            LOGGER.warning("Unknown period type " + elmntPeriod.getAttribute("type") + " for "
+                           + elmntPeriod.getParentNode().getParentNode().getAttributes().getNamedItem("name"));
+            type = "lecture";
         }
-        output.println("/>");
+        return "<period type=\"" + type + "\""
+                     + " professor=\"" + elmntPeriod.getAttribute("instructor") + "\" "
+                     + strDays + " starts=\"" + strStartTime + "\""
+                     + " ends=\"" + strEndTime + "\"/>\n";
+    }
+
+    private String getPeriodType(String type) {
+        type = type.toUpperCase();
+        if (type.equals("LEC")) return "lecture";
+        if (type.equals("REC")) return "recitation";
+        if (type.equals("LAB")) return "lab";
+        if (type.equals("STU")) return "studio";
+        if (type.equals("SEM")) return "seminar";
+        if (type.equals("TES")) return "lecture"; //TODO: create test period type
+        if (type.trim().equals("")) return "lecture"; //TODO: create test period type
+        return null;
     }
 
     private Document parse(InputStream is) throws ParserConfigurationException, SAXException, IOException {
@@ -282,7 +290,7 @@ public class NewRpiParser implements Serializable {
         int intMins = Integer.parseInt(s.substring(2, 4));
         // convert times from 24hr to AM/PM
         GregorianCalendar cal = new GregorianCalendar();
-        cal.set(Calendar.HOUR, intHours);
+        cal.set(Calendar.HOUR_OF_DAY, intHours);
         cal.set(Calendar.MINUTE, intMins);
         Date date = cal.getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("h:mma");

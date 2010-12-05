@@ -47,4 +47,8 @@ public class CourseXml {
     public int getSemester() {
         return semester;
     }
+
+    public Date getParseTimestamp() {
+        return parseTimestamp;
+    }
 }
