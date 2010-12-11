@@ -9,7 +9,6 @@
         <webroots>
           <root url="file://$MODULE_DIR$/web" relative="/" />
         </webroots>
-        <context-artifact name="rpidb-new:war exploded" />
       </configuration>
       <facet type="google-app-engine" name="Google App Engine">
         <configuration>
